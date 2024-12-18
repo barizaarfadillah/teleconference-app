@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teleconference - App</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function showModal(type) {
+      document.getElementById(type + "Modal").style.display = "block";
+    }
+
+    function closeModal(type) {
+      document.getElementById(type + "Modal").style.display = "none";
+    }
+  </script>
+</head>
+<body>
+  <div class="index-container">
+    <button onclick="showModal('create')">Create Room</button>
+    <button onclick="showModal('join')">Join Room</button>
+  </div>
+
+  <!-- Create Room Modal -->
+  <div class="modal" id="createModal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('create')">&times;</span>
+      <h3>Create Room</h3>
+      <form id="createRoomForm" action="/create-room" method="POST">
+        <input type="text" name="roomName" placeholder="Room Name" required />
+        <input type="text" name="username" placeholder="Your Name" required />
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Join Room Modal -->
+  <div class="modal" id="joinModal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('join')">&times;</span>
+      <h3>Join Room</h3>
+      <form id="joinRoomForm" action="/join-room" method="POST">
+        <input type="text" name="roomId" placeholder="Room ID" required />
+        <input type="text" name="roomName" placeholder="Room Name" required />
+        <input type="text" name="username" placeholder="Your Name" required />
+        <button type="submit">Join</button>
+      </form>
+    </div>
+  </div>
+
+  <style>
+    .index-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .index-container button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .modal-content .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  </style>
+</body>
+</html>
